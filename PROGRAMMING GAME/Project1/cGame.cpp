@@ -39,7 +39,6 @@ void cGame::initialise(SDL_Window* theSDLWND, SDL_Renderer* theRenderer)
 	SDL_SetRenderDrawColor(theRenderer, 0, 0, 0, 255);
 	SDL_RenderPresent(theRenderer);
 
-
 	theTextureMgr->setRenderer(theRenderer);
 	theTextureMgr->addTexture("theBackground", "Images\\starscape1024x768.png");
 	
@@ -84,7 +83,7 @@ void cGame::render(SDL_Window* theSDLWND, SDL_Renderer* theRenderer, double rotA
 
 void cGame::update()
 {
-
+	
 }
 
 void cGame::update(float deltaTime)

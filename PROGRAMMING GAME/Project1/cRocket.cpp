@@ -14,6 +14,7 @@ Initialise the sprite variables
 
 void cRocket::initialise()
 {
+	addPosX = 0;
 	rocketVelocity = { 0, 0 };
 	rocketRotAngle = 0;
 	rocketSpeed = 0;
@@ -33,10 +34,20 @@ void cRocket::update(float deltaTime)
 {
 
 	SDL_Rect currentSpritePos = this->getSpritePos();
-	//if ((rocketSpeed > 0) && (rocketPosX > 0))
+	if (!(currentSpritePos.x > 800) && !(currentSpritePos.x < 0))
 	{
 		currentSpritePos.x += rocketVelocity.x;
 	}
+	else if (currentSpritePos.x > 800)
+	{
+		currentSpritePos.x = 800;
+	}
+	else if (currentSpritePos.x < 0)
+	{
+		currentSpritePos.x = 0;
+	}
+
+
 	currentSpritePos.y += rocketVelocity.y;
 
 	this->setSpritePos({ currentSpritePos.x , currentSpritePos.y });
@@ -86,5 +97,6 @@ Gets the position on the X axis for the rocket
 */
 void cRocket::setRocketPosX(int addPosX)
 {
+	if(!(rocketPosX > 1024) && !(rocketPosX < 0))
 	rocketPosX += addPosX;
 }

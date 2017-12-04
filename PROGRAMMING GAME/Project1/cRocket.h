@@ -12,6 +12,7 @@ cRocket.h
 class cRocket : public cSprite
 {
 private:
+	int addPosX;
 	int rocketSpeed;
 	int rocketPosX;
 	SDL_Point rocketVelocity;

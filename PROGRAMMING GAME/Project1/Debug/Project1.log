@@ -1,5 +1,4 @@
-﻿  cGame.cpp
-r:\programming game\project1\cgame.cpp(137): warning C4244: 'initializing': conversion from 'Uint32' to 'float', possible loss of data
+﻿  cRocket.cpp
   Project1.vcxproj -> R:\PROGRAMMING GAME\Debug\Project1.exe
   Project1.vcxproj -> R:\PROGRAMMING GAME\Debug\Project1.pdb (Partial PDB)
   copying SDL2.dll to debug directory
