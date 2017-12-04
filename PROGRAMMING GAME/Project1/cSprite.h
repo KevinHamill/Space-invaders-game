@@ -20,6 +20,10 @@ private:
 	SDL_Rect spriteDimensions;
 	SDL_Point spriteCentre;
 	FPoint spriteScale;
+	float spriteRotationAngle;
+	SDL_Rect boundingRect;
+	bool mActive;
+	SDL_Point spriteTranslation;
 
 	// Pointer to Sprite Texture
 	cTexture* spriteTexture;
@@ -27,7 +31,7 @@ private:
 	// Texture width & Height
 	int textureWidth;
 	int textureHeight;
-
+	float lengthSQRD(SDL_Point theLength);
 
 public:
 	cSprite();			// Default constructor
@@ -46,5 +50,15 @@ public:
 	FPoint getSpriteScale();  // Return the sprites scaling factor
 	void setSpriteScale(FPoint sScale); // set the sprites scaling factor
 	void scaleSprite(); // update the sprites width & height
+	float getSpriteRotAngle();  // Return the sprites rotation angle
+	void setSpriteRotAngle(float angle); // set the sprites rotation angle
+	void setBoundingRect(SDL_Rect pRect);		// Determine the bounding rectangle for the sprite
+	SDL_Rect getBoundingRect();		// Get the bounding rectangle for the sprite
+	void setActive(bool sActive);			// Set the sprite to active.
+	bool isActive();						// Determine if the sprite is active.
+	void setSpriteTranslation(SDL_Point spriteTrans);   // Sets the translation for the sprite
+	SDL_Point getSpriteTranslation();				 // Gets the sprite translation
+	bool collidedWith(SDL_Rect* thisSprite, SDL_Rect* otherSpritePos);	// Check for collisions
+	bool SphereSphereCollision(SDL_Point spritePosition, float spriteRadius);
 };
 #endif
