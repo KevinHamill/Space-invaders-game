@@ -8,95 +8,114 @@ cRocket.cpp
 
 /*
 =================================================================
-Initialise the sprite variables
+Defualt Constructor
 =================================================================
 */
-
-void cRocket::initialise()
+cRocket::cRocket() : cSprite()
 {
-	addPosX = 0;
-	rocketVelocity = { 0, 0 };
-	rocketRotAngle = 0;
-	rocketSpeed = 0;
-	rocketPosX = 500;
+	this->rocketVelocity = { 0, 0 };
 }
-
-//void cRocket::render()
-//{
-//}
 /*
 =================================================================
 Update the sprite position
 =================================================================
 */
 
-void cRocket::update(float deltaTime)
+void cRocket::update(double deltaTime)
 {
 
+	FPoint direction = { 0.0f, 0.0f };
+	direction.X = (sin(this->getSpriteRotAngle()*PI / 180));
+	direction.Y = -(cos(this->getSpriteRotAngle()*PI / 180));
+
+	direction.X *= this->getSpriteTranslation().x;
+	direction.Y *= this->getSpriteTranslation().y;
+
+	this->rocketVelocity.x = this->rocketVelocity.x + direction.X;
+	this->rocketVelocity.y = this->rocketVelocity.y + direction.Y;
+
 	SDL_Rect currentSpritePos = this->getSpritePos();
-	if (!(currentSpritePos.x > 800) && !(currentSpritePos.x < 0))
-	{
-		currentSpritePos.x += rocketVelocity.x;
-	}
-	else if (currentSpritePos.x > 800)
-	{
-		currentSpritePos.x = 800;
-	}
-	else if (currentSpritePos.x < 0)
-	{
-		currentSpritePos.x = 0;
-	}
+	currentSpritePos.x += this->rocketVelocity.x * deltaTime;
+	currentSpritePos.y += this->rocketVelocity.y * deltaTime;
 
-
-	currentSpritePos.y += rocketVelocity.y;
-
-	this->setSpritePos({ currentSpritePos.x , currentSpritePos.y });
-	this->rocketVelocity = {0,0};
+	this->rocketVelocity.x *= 0.95;
+	this->rocketVelocity.y *= 0.95;
+	
+	this->setSpritePos({ currentSpritePos.x , currentSpritePos.y  });
+	this->setBoundingRect(this->getSpritePos());
 }
 /*
 =================================================================
-  Sets the velocity for the rocket
+Sets the velocity for the rocket
 =================================================================
 */
 void cRocket::setRocketVelocity(SDL_Point rocketVel)
 {
 	rocketVelocity = rocketVel;
-	
 }
 /*
 =================================================================
-  Gets the rocket velocity
+Gets the rocket velocity
 =================================================================
 */
 SDL_Point cRocket::getRocketVelocity()
 {
 	return rocketVelocity;
 }
+
+
 /*
 =================================================================
-Sets the rotation angle for the rocket
+Update the sprite position
 =================================================================
 */
-void cRocket::setRocketRotation(double theRotAngle)
-{
-	rocketRotAngle = theRotAngle;
-}
-/*
-=================================================================
-Gets the rotation angle for the rocket
-=================================================================
-*/
-double cRocket::getRocketRotation()
-{
-	return rocketRotAngle;
-}
-/*
-=================================================================
-Gets the position on the X axis for the rocket
-=================================================================
-*/
-void cRocket::setRocketPosX(int addPosX)
-{
-	if(!(rocketPosX > 1024) && !(rocketPosX < 0))
-	rocketPosX += addPosX;
-}
+
+
+//
+//	glm::vec2 spriteVelocityAdd = glm::vec2(0.0f, 0.0f);
+//	spriteVelocityAdd.x = (glm::sin(glm::radians(spriteRotation)));
+//	spriteVelocityAdd.y = -(glm::cos(glm::radians(spriteRotation)));
+//
+//	spriteVelocityAdd *= spriteTranslation;
+//
+//	rocketVelocity += spriteVelocityAdd;
+//
+//	spritePos2D += rocketVelocity * deltaTime;
+//
+//	rocketVelocity *= 0.95;
+//
+//	/*
+//	==============================================================
+//	| Check for collisions
+//	==============================================================
+//	*/
+//	for (vector<cBullet*>::iterator bulletIterartor = theRocketBullets.begin(); bulletIterartor != theRocketBullets.end(); ++bulletIterartor)
+//	{
+//		(*bulletIterartor)->update(deltaTime);
+//		for (vector<cAsteroid*>::iterator asteroidIterator = theAsteroids.begin(); asteroidIterator != theAsteroids.end(); ++asteroidIterator)
+//		{
+//			if ((*asteroidIterator)->collidedWith((*asteroidIterator)->getBoundingRect(), (*bulletIterartor)->getBoundingRect()))
+//			{
+//				// if a collision set the bullet and asteroid to false
+//				(*asteroidIterator)->setActive(false);
+//				(*bulletIterartor)->setActive(false);
+//			}
+//		}
+//	}
+//
+//	vector<cBullet*>::iterator bulletIterartor = theRocketBullets.begin();
+//	while (bulletIterartor != theRocketBullets.end())
+//	{
+//		if ((*bulletIterartor)->isActive() == false)
+//		{
+//			bulletIterartor = theRocketBullets.erase(bulletIterartor);
+//		}
+//		else
+//		{
+//			//(*bulletIterartor)->update(deltaTime);
+//			(*bulletIterartor)->render();
+//			(*bulletIterartor)->renderCollisionBox();
+//			++bulletIterartor;
+//		}
+//	}
+//}

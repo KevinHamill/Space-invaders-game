@@ -61,7 +61,7 @@ bool cSDL2WNDManager::initWND(string strWNDTitle, int iWidth, int iHeight)
 	else
 	{
 		// Get the renderer
-			theRenderer = SDL_CreateRenderer(mainWindow, -1, 0);
+		theRenderer = SDL_CreateRenderer(mainWindow, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 
 			if (theRenderer != 0)
 			{
