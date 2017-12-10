@@ -10,7 +10,7 @@ cGame.h
 #include <SDL.h>
 
 // Game specific includes
-#include "rocketGame.h"
+#include "asteroidsGame.h"
 
 
 using namespace std;
@@ -26,23 +26,44 @@ public:
 	void render(SDL_Window* theSDLWND, SDL_Renderer* theRenderer);
 	void render(SDL_Window* theSDLWND, SDL_Renderer* theRenderer, double rotAngle, SDL_Point* spriteCentre);
 	void update();
-	void update(float deltaTime);
+	void update(double deltaTime);
 	bool getInput(bool theLoop);
-	float getElapsedSeconds();
+	double getElapsedSeconds();
 
 	static cGame* getInstance();
 
 private:
 
 	static cGame* pInstance;
+	// for framerates
+	time_point< high_resolution_clock > m_lastTime;
+	time_point< high_resolution_clock > m_CurrentTime;
+	duration< double > deltaTime;
 
-	// game related variables
-	float m_lastTime;
 	// Sprites for displaying background and rocket textures
 	cSprite spriteBkgd;
-	cRocket rocketSprite;
+	cRocket theRocket;
+	cAsteroid theAsteroid;
+	cBullet theBullet;
+	// game related variables
+	vector<LPCSTR> textureName;
+	vector<LPCSTR> textName;
+	vector<LPCSTR> texturesToUse;
+	vector<cAsteroid*> theAsteroids;
+	vector<cBullet*> theBullets;
+	// Fonts to use
+	vector<LPCSTR> fontList;
+	vector<LPCSTR> fontsToUse;
+	// Text for Game
+	vector<LPCSTR> gameTextList;
+	// Game Sounds
+	vector<LPCSTR> soundList;
+	vector<soundType> soundTypes;
+	vector<LPCSTR> soundsToUse;
 	// Game objects
-
+	// Define the elements and there position in/on the array/map
+	int renderWidth, renderHeight;
+	int score;
 };
 
 #endif

@@ -13,24 +13,25 @@
 #include <SDL_image.h>
 // Font loading library
 #include <SDL_ttf.h>
+// Audio loading library
+#include <SDL_mixer.h>
 // Maths functions
 #include <math.h>
 #define PI 3.14159265
-//#include "glm\glm.hpp"
-//#include "glm\gtc\matrix_transform.hpp"
-//#include "glm\geometric.hpp"
-//#include "glm\gtc\quaternion.hpp"
-//#include "glm\gtc\type_ptr.hpp"
-//#include "glm\gtx\quaternion.hpp"
+
 // STL Container & Algorithms
 #include <vector>
 #include <map>
 #include <algorithm>
+#include <chrono>
+using namespace std::chrono;
 
 using namespace std;
 
 //Define the string to appear in the top left corner of the window
-#define WINDOW_TITLE "Space Rockets - Using Transforms!"
+#define WINDOW_TITLE "Asteroids!! - The Game"
+#define WINDOW_WIDTH 1024
+#define WINDOW_HEIGHT 768
 
 // This header file contains all the constants & enumarated types for the game
 typedef struct
@@ -39,4 +40,6 @@ typedef struct
 	float  Y;
 }FPoint;
 
+enum textType {SOLID, BLENDED, SHADED};
+enum soundType {SFX, MUSIC};
 #endif
