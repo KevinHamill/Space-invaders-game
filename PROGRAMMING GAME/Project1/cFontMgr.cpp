@@ -80,7 +80,7 @@ void cFontMgr::deleteFont()								// delete font.
 {
 	for (map<LPCSTR, cFont*>::const_iterator theFont = fontList.begin(); theFont != fontList.end(); theFont++)
 	{
-		TTF_CloseFont(theFont->second->getFont());
+		//TTF_CloseFont(theFont->second->getFont());
 		delete theFont->second;
 	}
 }

@@ -27,22 +27,24 @@ bool cSound::load(LPCSTR filename)
 		case SFX:
 		{
 			this->SoundFX = Mix_LoadWAV(filename);
-			if (this->SoundFX != 0)
+			if (this->SoundFX == NULL)
 			{
 				cout << "Sound FX '" << filename << "' could not be loaded. " << SDL_GetError() << endl;
 				return false;
 			}
+			cout << "Sound FX '" << filename << "' loaded successfully!. " << endl;
 			return true;
 		}
 		break;
 		case MUSIC:
 		{
 			this->sMusic = Mix_LoadMUS(filename);
-			if (this->sMusic != 0)
+			if (this->sMusic == NULL)
 			{
 				cout << "Music '" << filename << "' could not be loaded. " << SDL_GetError() << endl;
 				return false;
 			}
+			cout << "Music '" << filename << "' loaded successfully!. " << endl;
 			return true;
 		}
 		break;

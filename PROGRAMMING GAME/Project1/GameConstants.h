@@ -29,7 +29,7 @@ using namespace std::chrono;
 using namespace std;
 
 //Define the string to appear in the top left corner of the window
-#define WINDOW_TITLE "Asteroids!! - The Game"
+#define WINDOW_TITLE "Maze Maker - Level Editor?"
 #define WINDOW_WIDTH 1024
 #define WINDOW_HEIGHT 768
 
@@ -42,4 +42,7 @@ typedef struct
 
 enum textType {SOLID, BLENDED, SHADED};
 enum soundType {SFX, MUSIC};
+enum gameState { MENU, INSTRUCTIONS, CREATEMAZE, PLAYING, END, QUIT };
+enum btnTypes { EXIT, INSTRUCT, LOAD, PLAY, SAVE, SETTINGS };
+
 #endif

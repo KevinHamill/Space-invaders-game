@@ -23,7 +23,7 @@ Destructor
 */
 cFont::~cFont()
 {
-	delete theFont;
+	TTF_CloseFont(theFont);
 }
 /*
 ==========================================================================
@@ -40,6 +40,7 @@ bool cFont::loadFont(LPCSTR fontFileName, int fontSize)
 		delete theFont;
 		return false;
 	}
+	cout << "Font '" << fontFileName << "' loaded successfully" << endl;
 	return true;
 }
 
